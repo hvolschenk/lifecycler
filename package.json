@@ -1,0 +1,44 @@
+{
+  "name": "lifecycler",
+  "version": "0.0.1",
+  "description": "React lifecycle rendered component",
+  "main": "lib/index.js",
+  "scripts": {
+    "lint": "eslint --ext .js .",
+    "test": "npm run lint && npm run test:scripts",
+    "test:scripts": "jest --coverage"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/hvolschenk/lifecycler.git"
+  },
+  "keywords": [
+    "React",
+    "lifecycle",
+    "render-props"
+  ],
+  "author": "Hendrik Volschenk <righteous.trespasser@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/hvolschenk/lifecycler/issues"
+  },
+  "homepage": "https://github.com/hvolschenk/lifecycler#readme",
+  "dependencies": {
+    "lodash.isfunction": "^3.0.8",
+    "prop-types": "^15.6.0",
+    "react": "^16.0.0"
+  },
+  "devDependencies": {
+    "babel-core": "^6.26.0",
+    "babel-jest": "^21.2.0",
+    "babel-preset-env": "^1.6.0",
+    "babel-preset-react": "^6.24.1",
+    "babel-preset-stage-0": "^6.24.1",
+    "eslint": "^4.9.0",
+    "eslint-config-airbnb": "^16.1.0",
+    "eslint-plugin-import": "^2.7.0",
+    "eslint-plugin-jsx-a11y": "^6.0.2",
+    "eslint-plugin-react": "^7.4.0",
+    "jest": "^21.2.1"
+  }
+}
