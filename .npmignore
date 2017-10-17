@@ -1,0 +1,10 @@
+.jest/
+coverage/
+jest_0/
+src/
+.babelrc
+.eslintignore
+.gitignore
+docker-compose.yml
+Dockerfile
+package-lock.json
