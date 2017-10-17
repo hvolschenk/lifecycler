@@ -1,6 +1,6 @@
 {
   "name": "lifecycler",
-  "version": "0.0.1",
+  "version": "0.0.0-semver",
   "description": "React lifecycle rendered component",
   "main": "lib/index.js",
   "scripts": {
