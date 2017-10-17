@@ -24,6 +24,7 @@
   },
   "homepage": "https://github.com/hvolschenk/lifecycler#readme",
   "dependencies": {
+    "lodash.isboolean": "^3.0.3",
     "lodash.isfunction": "^3.0.8",
     "prop-types": "^15.6.0",
     "react": "^16.0.0"
@@ -34,11 +35,31 @@
     "babel-preset-env": "^1.6.0",
     "babel-preset-react": "^6.24.1",
     "babel-preset-stage-0": "^6.24.1",
+    "enzyme": "^3.1.0",
+    "enzyme-adapter-react-16": "^1.0.2",
     "eslint": "^4.9.0",
     "eslint-config-airbnb": "^16.1.0",
     "eslint-plugin-import": "^2.7.0",
     "eslint-plugin-jsx-a11y": "^6.0.2",
     "eslint-plugin-react": "^7.4.0",
-    "jest": "^21.2.1"
+    "jest": "^21.2.1",
+    "react-dom": "^16.0.0"
+  },
+  "jest": {
+    "coveragePathIgnorePatterns": [
+      "/node_modules/",
+      "<rootDir>/.jest"
+    ],
+    "roots": [
+      "<rootDir>/src"
+    ],
+    "setupFiles": [
+      "<rootDir>/.jest/shim.js",
+      "<rootDir>/.jest/test-setup.js"
+    ],
+    "testPathIgnorePatterns": [
+      "/node_modules/",
+      "<rootDir>/.jest"
+    ]
   }
 }

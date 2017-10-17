@@ -4,5 +4,8 @@
     "jest": true,
     "node": true
   },
-  "extends": "airbnb"
+  "extends": "airbnb",
+  "rules": {
+    "function-paren-newline": ["error", "consistent"],
+  }
 }
