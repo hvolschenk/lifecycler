@@ -3,6 +3,8 @@ coverage/
 jest_0/
 src/
 .babelrc
+.eslintrc
+.travis.yml
 .eslintignore
 .gitignore
 docker-compose.yml
