@@ -43,16 +43,28 @@ information:
 
 #### Mounting:
 
-* `componentWillMount`
-* `componentDidMount`
+* `componentWillMount()`
+
+* `componentDidMount()`
 
 #### Updating
 
-* `componentWillReceiveProps`
-* `shouldComponentUpdate`
-* `componentWillUpdate`
-* `componentDidUpdate`
+* `componentWillReceiveProps(nextProps)`
+
+* `shouldComponentUpdate(nextProps, nextState)`
+
+  This method should return a boolean value. If no value (or a non-booean value) is returned,
+  **Lifecycler** will return `true` for you. Because these are still stateless components,
+  `nextState` will always be `null`.
+
+* `componentWillUpdate(nextProps, nextState)`
+
+  Because these are still stateless components, `nextState` will always be `null`.
+
+* `componentDidUpdate(prevProps, prevState)`
+
+  Because these are still stateless components, `nextState` will always be `null`.
 
 #### Unmounting
 
-* `componentWillUnmount`
+* `componentWillUnmount()`
