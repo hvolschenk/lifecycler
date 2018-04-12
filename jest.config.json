@@ -1,0 +1,17 @@
+{
+  "coveragePathIgnorePatterns": [
+    "/node_modules/",
+    "<rootDir>/.jest"
+  ],
+  "roots": [
+    "<rootDir>/src"
+  ],
+  "setupFiles": [
+    "<rootDir>/.jest/shim.js",
+    "<rootDir>/.jest/test-setup.js"
+  ],
+  "testPathIgnorePatterns": [
+    "/node_modules/",
+    "<rootDir>/.jest"
+  ]
+}
