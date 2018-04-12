@@ -4,4 +4,4 @@ services:
     build: "."
     container_name: "lifecycler"
     volumes:
-      - ./:/app
+      - ./:/home/node/app
