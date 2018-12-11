@@ -1,17 +1,37 @@
 {
+  "cacheDirectory": "<rootDir>/jest_modules",
   "coveragePathIgnorePatterns": [
     "/node_modules/",
     "<rootDir>/.jest"
+  ],
+  "coverageThreshold": {
+    "global": {
+      "branches": 100,
+      "functions": 100,
+      "lines": 100,
+      "statements": 100
+    }
+  },
+  "moduleDirectories": [
+    "node_modules",
+    "src"
+  ],
+  "moduleFileExtensions": [
+    "js",
+    "json",
+    "jsx"
   ],
   "roots": [
     "<rootDir>/src"
   ],
   "setupFiles": [
+    "<rootDir>/.jest/mutation-observer.js",
     "<rootDir>/.jest/shim.js",
     "<rootDir>/.jest/test-setup.js"
   ],
   "testPathIgnorePatterns": [
     "/node_modules/",
     "<rootDir>/.jest"
-  ]
+  ],
+  "testURL": "https://0.0.0.0"
 }
