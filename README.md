@@ -45,11 +45,11 @@ information:
 
 * `componentWillMount()`
 
-* `componentDidMount()`
+* `UNSAFE_componentDidMount()` or `componentDidMount()`
 
 #### Updating
 
-* `componentWillReceiveProps(nextProps)`
+* `UNSAFE_componentWillReceiveProps(nextProps)` or `componentWillReceiveProps(nextProps)`
 
 * `shouldComponentUpdate(nextProps, nextState)`
 
@@ -57,7 +57,7 @@ information:
   **Lifecycler** will return `true` for you. Because these are still stateless components,
   `nextState` will always be `null`.
 
-* `componentWillUpdate(nextProps, nextState)`
+* `UNSAFE_componentWillUpdate(nextProps, nextState)` or `componentWillUpdate(nextProps, nextState)`
 
   Because these are still stateless components, `nextState` will always be `null`.
 
