@@ -7,6 +7,16 @@
   "extends": "airbnb",
   "parser": "babel-eslint",
   "rules": {
+    "camelcase": [
+      "error",
+      {
+        "allow": [
+          "UNSAFE_componentWillMount",
+          "UNSAFE_componentWillReceiveProps",
+          "UNSAFE_componentWillUpdate"
+        ]
+      }
+    ],
     "function-paren-newline": ["error", "consistent"],
     "implicit-arrow-linebreak": "off",
     "import/order": [
@@ -22,6 +32,7 @@
     "operator-linebreak": "off",
     "react/destructuring-assignment": "off",
     "react/jsx-one-expression-per-line": "off",
+    "react/jsx-props-no-spreading": "off",
     "react/no-typos": "off"
   }
 }

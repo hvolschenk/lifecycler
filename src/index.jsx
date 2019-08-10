@@ -3,7 +3,7 @@ import isFunction from 'lodash.isfunction';
 import PropTypes from 'prop-types';
 import React from 'react';
 
-const applyLifecycleMethod = method => (...parameters) => {
+const applyLifecycleMethod = (method) => (...parameters) => {
   if (isFunction(method)) {
     return method(...parameters);
   }
@@ -11,21 +11,24 @@ const applyLifecycleMethod = method => (...parameters) => {
 };
 
 class Lifecycler extends React.Component {
-  componentWillMount() {
-    applyLifecycleMethod(this.props.componentWillMount)();
+  UNSAFE_componentWillMount() {
+    const { componentWillMount, UNSAFE_componentWillMount } = this.props;
+    applyLifecycleMethod(UNSAFE_componentWillMount || componentWillMount)();
   }
   componentDidMount() {
     applyLifecycleMethod(this.props.componentDidMount)();
   }
-  componentWillReceiveProps(nextProps) {
-    applyLifecycleMethod(this.props.componentWillReceiveProps)(nextProps);
+  UNSAFE_componentWillReceiveProps(nextProps) {
+    const { componentWillReceiveProps, UNSAFE_componentWillReceiveProps } = this.props;
+    applyLifecycleMethod(UNSAFE_componentWillReceiveProps || componentWillReceiveProps)(nextProps);
   }
   shouldComponentUpdate(nextProps, nextState) {
     const should = applyLifecycleMethod(this.props.shouldComponentUpdate)(nextProps, nextState);
     return isBoolean(should) ? should : true;
   }
-  componentWillUpdate(nextProps, nextState) {
-    applyLifecycleMethod(this.props.componentWillUpdate)(nextProps, nextState);
+  UNSAFE_componentWillUpdate(nextProps, nextState) {
+    const { componentWillUpdate, UNSAFE_componentWillUpdate } = this.props;
+    applyLifecycleMethod(UNSAFE_componentWillUpdate || componentWillUpdate)(nextProps, nextState);
   }
   componentDidUpdate(previousProps, previousState) {
     applyLifecycleMethod(this.props.componentDidUpdate)(previousProps, previousState);
@@ -47,6 +50,9 @@ Lifecycler.propTypes = {
   componentWillUnmount: PropTypes.func,
   componentWillUpdate: PropTypes.func,
   shouldComponentUpdate: PropTypes.func,
+  UNSAFE_componentWillMount: PropTypes.func,
+  UNSAFE_componentWillReceiveProps: PropTypes.func,
+  UNSAFE_componentWillUpdate: PropTypes.func,
 };
 
 Lifecycler.defaultProps = {
@@ -57,6 +63,9 @@ Lifecycler.defaultProps = {
   componentWillUnmount: undefined,
   componentWillUpdate: undefined,
   shouldComponentUpdate: undefined,
+  UNSAFE_componentWillMount: undefined,
+  UNSAFE_componentWillReceiveProps: undefined,
+  UNSAFE_componentWillUpdate: undefined,
 };
 
 export default Lifecycler;
