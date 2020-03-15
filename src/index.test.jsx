@@ -21,18 +21,12 @@ describe('Rendering', () => {
 });
 
 describe('Mounting', () => {
-  describe('With explicitly unsafe lifecycle methods', () => {
+  describe('With old unsafe lifecycle methods', () => {
     const componentDidMount = jest.fn();
-    const componentWillMount = jest.fn();
-    const UNSAFE_componentWillMount = jest.fn();
 
     beforeAll(() => {
       shallow(
-        <Lifecycler
-          componentDidMount={componentDidMount}
-          componentWillMount={componentWillMount}
-          UNSAFE_componentWillMount={UNSAFE_componentWillMount}
-        >
+        <Lifecycler componentDidMount={componentDidMount}>
           <Children />
         </Lifecycler>,
       );
@@ -40,131 +34,6 @@ describe('Mounting', () => {
 
     test('Calls \'componentDidMount\'', () => {
       expect(componentDidMount.mock.calls.length).toBe(1);
-    });
-
-    test('Calls \'UNSAFE_componentWillMount\'', () => {
-      expect(UNSAFE_componentWillMount.mock.calls.length).toBe(1);
-    });
-
-    test('Does not call \'componentWillMount\'', () => {
-      expect(componentWillMount.mock.calls.length).toBe(0);
-    });
-  });
-
-  describe('With old unsafe lifecycle methods', () => {
-    const componentDidMount = jest.fn();
-    const componentWillMount = jest.fn();
-
-    beforeAll(() => {
-      shallow(
-        <Lifecycler
-          componentDidMount={componentDidMount}
-          componentWillMount={componentWillMount}
-        >
-          <Children />
-        </Lifecycler>,
-      );
-    });
-
-    test('Calls \'componentDidMount\'', () => {
-      expect(componentDidMount.mock.calls.length).toBe(1);
-    });
-
-    test('Calls \'componentWillMount\'', () => {
-      expect(componentWillMount.mock.calls.length).toBe(1);
-    });
-  });
-});
-
-describe('Updating', () => {
-  describe('With explicitly unsafe lifecycle methods', () => {
-    const componentDidUpdate = jest.fn();
-    const componentWillReceiveProps = jest.fn();
-    const componentWillUpdate = jest.fn();
-    const shouldComponentUpdate = jest.fn();
-    const UNSAFE_componentWillReceiveProps = jest.fn();
-    const UNSAFE_componentWillUpdate = jest.fn();
-    const nextProps = { next: 'props' };
-
-    let instanceProps;
-
-    beforeAll(() => {
-      const wrapper = shallow(
-        <Lifecycler
-          componentDidUpdate={componentDidUpdate}
-          componentWillReceiveProps={componentWillReceiveProps}
-          componentWillUpdate={componentWillUpdate}
-          shouldComponentUpdate={shouldComponentUpdate}
-          UNSAFE_componentWillReceiveProps={UNSAFE_componentWillReceiveProps}
-          UNSAFE_componentWillUpdate={UNSAFE_componentWillUpdate}
-        >
-          <Children />
-        </Lifecycler>,
-      );
-      instanceProps = wrapper.instance().props;
-      wrapper.setProps(nextProps);
-    });
-
-    test('Calls \'UNSAFE_componentWillReceiveProps\'', () => {
-      expect(UNSAFE_componentWillReceiveProps.mock.calls[0][0])
-        .toEqual({ ...instanceProps, ...nextProps });
-    });
-
-    test('Does not call \'componentWillReceiveProps\'', () => {
-      expect(componentWillReceiveProps.mock.calls.length).toBe(0);
-    });
-
-    test('Calls \'shouldComponentUpdate\'', () => {
-      expect(shouldComponentUpdate.mock.calls[0])
-        .toEqual([{ ...instanceProps, ...nextProps }, {}]);
-    });
-
-    test('Calls \'UNSAFE_componentWillUpdate\'', () => {
-      expect(UNSAFE_componentWillUpdate.mock.calls[0])
-        .toEqual([{ ...instanceProps, ...nextProps }, {}]);
-    });
-
-    test('Does not call \'componentWillUpdate\'', () => {
-      expect(componentWillUpdate.mock.calls.length).toBe(0);
-    });
-
-    test('Calls \'componentDidUpdate\'', () => {
-      expect(componentDidUpdate.mock.calls[0]).toEqual([instanceProps, null]);
-    });
-  });
-
-  describe('With old unsafe lifecycle methods', () => {
-    const componentDidUpdate = jest.fn();
-    const componentWillReceiveProps = jest.fn();
-    const componentWillUpdate = jest.fn();
-    const shouldComponentUpdate = jest.fn();
-    const nextProps = { next: 'props' };
-
-    let instanceProps;
-
-    beforeAll(() => {
-      const wrapper = shallow(
-        <Lifecycler
-          componentDidUpdate={componentDidUpdate}
-          componentWillReceiveProps={componentWillReceiveProps}
-          componentWillUpdate={componentWillUpdate}
-          shouldComponentUpdate={shouldComponentUpdate}
-        >
-          <Children />
-        </Lifecycler>,
-      );
-      instanceProps = wrapper.instance().props;
-      wrapper.setProps(nextProps);
-    });
-
-    test('Calls \'componentWillReceiveProps\'', () => {
-      expect(componentWillReceiveProps.mock.calls[0])
-        .toEqual([{ ...instanceProps, ...nextProps }]);
-    });
-
-    test('Calls \'componentWillUpdate\'', () => {
-      expect(componentWillUpdate.mock.calls[0])
-        .toEqual([{ ...instanceProps, ...nextProps }, {}]);
     });
   });
 });
@@ -205,6 +74,23 @@ describe('Returns the value for \'shouldComponentUpdate\' if it is a boolean', (
 
   test('Returns the boolean value', () => {
     expect(instance.shouldComponentUpdate()).toBe(SHOULD_COMPONENT_UPDATE);
+  });
+});
+
+describe('Updating', () => {
+  const componentDidUpdate = jest.fn();
+
+  beforeAll(() => {
+    const wrapper = mount(
+      <Lifecycler componentDidUpdate={componentDidUpdate}>
+        <Children />
+      </Lifecycler>,
+    );
+    wrapper.setProps({});
+  });
+
+  test('Calls \'componentDidUpdate\'', () => {
+    expect(componentDidUpdate.mock.calls.length).toBe(1);
   });
 });
 

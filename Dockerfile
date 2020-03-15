@@ -1,4 +1,4 @@
-FROM node:dubnium-alpine
+FROM node:erbium-alpine
 
 ENV HOME /home/node/app
 
@@ -6,5 +6,5 @@ WORKDIR $HOME
 
 VOLUME [$HOME]
 
-RUN chown -Rv node:node $HOME
+RUN chown -R node:node $HOME
 USER node
